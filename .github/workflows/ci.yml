@@ -1,0 +1,31 @@
+name: CI Pipeline                                   # nombre visible en la pestana de Actions
+
+on:                                                 # eventos que dispara el workflow
+    push:                                           # cuando alguien hace push
+        branches: [ main ]                          #....a la rama Main
+
+    pull_request:                                   # cuando alguien hace pull request (pr)
+        branches: [ main ]                          #....a la rama Main
+
+    workflow_dispatch:                              # permite ejecucion manual desde la UI
+
+
+jobs:                                               # aca van todos los jobs
+    run-test:                                       # nombre del job
+        name: Run Test                 
+        runs-on: ubuntu-latest                      # tipo de runner (maquina virtual)
+
+        steps:                                      # pasos en orden secuencial
+            - name: Checkout Code       
+              uses: action/checkout@v4              # clona el repo en el runner
+
+            - name: Setup Node.js
+              uses: actions/setup-node@4            # instala Node en el runner
+              with: 
+                node-version: '20'                  # version especifica de Node
+            
+            - name: Install Dependencies            # instalar dependencias
+              run: npm ci                           # instalar de manera limpia
+
+            - name: Run Test
+              run: npm test                         # correr tests de cron-ticker-alumno
