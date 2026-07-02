@@ -17,7 +17,7 @@ jobs:                                               # aca van todos los jobs
 
         steps:                                      # pasos en orden secuencial
             - name: Checkout Code       
-              uses: action/checkout@v4              # clona el repo en el runner
+              uses: actions/checkout@v4              # clona el repo en el runner
 
             - name: Setup Node.js
               uses: actions/setup-node@4            # instala Node en el runner
