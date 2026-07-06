@@ -11,22 +11,29 @@ on:
 
   workflow_dispatch:
 
+# variables a nivel del workflow
+env: 
+    NODE_VERSION: "20"
+    APP_NAME: cron-ticker
+
 jobs:
-  run-test:
-    name: Run Test
+
+  build:
     runs-on: ubuntu-latest
 
+    # variables a nivel del job
+
+    env:
+      BUILD_DIR: dist
+
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - name: Show Variables
+        run: |
+          echo "App: ${{ env.APP_NAME}}, Node: ${{ env.NODE_VERSION}}"
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Run Tests
-        run: npm test
+      # variables a nivel  del step
+      - name: Build
+        run: npm run build
+        env:
+          APP_VERSION: '2.0.0'
