@@ -38,7 +38,7 @@ jobs:
 
       - name: Show Note Reto Variables
         run: |
-          echo "App Variable: ${{ vars.APP_VARIABLE }}
+          echo "App Variable: ${{ vars.APP_VARIABLE }}"
 
       # variables a nivel  del step
       - name: Build
