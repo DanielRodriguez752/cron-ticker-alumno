@@ -40,6 +40,10 @@ jobs:
         run: |
           echo "App Variable: ${{ vars.APP_VARIABLE }}"
 
+      - name: Deploy API
+        run: |
+          echo "Deploying with key: ${{ secrets.API_KEY }}"
+
       # variables a nivel  del step
       - name: Build
         run: npm run build
